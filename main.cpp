@@ -66,7 +66,6 @@ int main() {
     printl("---------------------");
     for (int i = 1; i <= hours; i++) {
         const double distance = speed * i;
-        // cout << i << distance << endl;
         cout << fixed << setprecision(2) << "| " << setw(4) << i << " | " << setw(7) << humanize_double(distance) << " mi |" << endl;
         printl("---------------------");
     }
