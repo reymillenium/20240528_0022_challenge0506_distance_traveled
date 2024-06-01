@@ -1,5 +1,5 @@
 /**
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                       *
  *       Created by: Reinier Garcia Ramos                *
  *       reymillenium@gmail.com                          *
@@ -12,11 +12,9 @@
  **/
 
 #include <iostream>
-#include <string>  // for string, to_string, etc
-#include <iomanip> // for setprecision
-#include <sstream> // for stringstream
-
-using namespace std;
+#include <string>
+#include <iomanip>
+#include <sstream>
 
 template<typename T>
 void printl(const T &item) {
@@ -28,12 +26,12 @@ auto get_value(const std::string &message) -> T {
     std::cout << message;
     T value;
     std::cin >> value;
-    cin.ignore();
+    std::cin.ignore();
     return value;
 }
 
-string humanize_integer(int const integer_value) {
-    string integer_as_string = to_string(integer_value);
+std::string humanize_integer(int const integer_value) {
+    std::string integer_as_string = std::to_string(integer_value);
     // We insert commas into the string every three digits, fromm right to left.
     for (int j = integer_as_string.length() - 3; j > 0; j -= 3) {
         integer_as_string.insert(j, ",");
@@ -41,7 +39,7 @@ string humanize_integer(int const integer_value) {
     return integer_as_string;
 }
 
-string humanize_double(const double double_value, const int precision = 2) {
+std::string humanize_double(const double double_value, const int precision = 2) {
     const int integer_value = static_cast<int>(double_value);
     const double decimals = double_value - integer_value;
     // Extracts into a string the decimal part, rounded to two significant digits
@@ -54,9 +52,22 @@ string humanize_double(const double double_value, const int precision = 2) {
 }
 
 int main() {
+speed_input:
     const auto speed = get_value<double>("What is the speed of the vehicle in mph? ");
-    const auto hours = get_value<int>("How many hours has it traveled? ");
+    if (speed < 0) {
+        printl("You must type a number greater or equal to 0. Please try again.");
+        goto speed_input;
+    }
 
+hours_input:
+    const auto hours = get_value<int>("How many hours has it traveled? ");
+    if (hours < 1) {
+        printl("You must type a number greater or equal to 1. Please try again.");
+        goto hours_input;
+    }
+
+    // Distance Traveled Breakdown Table
+    printl("");
     printl("* * * * * * * * * * * * * *");
     printl("*    Distance Traveled    *");
     printl("* * * * * * * * * * * * * *");
@@ -66,7 +77,7 @@ int main() {
     printl("---------------------");
     for (int i = 1; i <= hours; i++) {
         const double distance = speed * i;
-        cout << fixed << setprecision(2) << "| " << setw(4) << i << " | " << setw(7) << humanize_double(distance) << " mi |" << endl;
+        std::cout << std::fixed << std::setprecision(2) << "| " << std::setw(4) << i << " | " << std::setw(7) << humanize_double(distance) << " mi |" << std::endl;
         printl("---------------------");
     }
 

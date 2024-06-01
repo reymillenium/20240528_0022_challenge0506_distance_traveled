@@ -54,6 +54,7 @@ And in order to run that a.out file, we must execute on the terminal:
 reinier@reinier % ./your_prefered_executable_file_name
 What is the speed of the vehicle in mph? 120
 How many hours has it traveled? 4
+
 * * * * * * * * * * * * * *
 *    Distance Traveled    *
 * * * * * * * * * * * * * *
