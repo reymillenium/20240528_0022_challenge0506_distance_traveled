@@ -28,7 +28,7 @@ Write a program that asks the user for the speed of a vehicle (in miles per hour
 
 ## Execution from the Terminal (Alternative way without an IDE):
 
-A country club, which currently charges $2,500 per year for membership, has announced it will increase its membership fee by 4 percent each year for the next 6 years. Write a program that uses a loop to display the projected rates for the next 6 years.
+We must provide to the Compiler the same switches that we usually do in the IDE:
 
 ```terminal
 g++ -Wall -std=c++17 main.cpp
